@@ -18,20 +18,46 @@ $A_1, A_2, \cdots, A_N$이 주어어집니다.
 출력
 마지막 두 폭죽 더미 중 더 높은 것의 높이의 최솟값을 출력합니다."""
 
+"""
+# 그냥 정석?
 N = int(input())
 firecrackers = list(map(int, input().split(" ")))
 # N-2번 반복
 # 양 끝의 길이 비교후 시작
 for _ in range(1, len(firecrackers)-1):
-    tmp = 0
     if(firecrackers[0]>firecrackers[-1]):
         firecrackers[0]-=1
         firecrackers[2]-=1
         firecrackers.pop(1)
-        tmp = 0
     else:
         firecrackers[-1]-=1
         firecrackers[-3]-=1
         firecrackers.pop(-2)
-        tmp = -1
-print(firecrackers[tmp])
+print(max(firecrackers))"""
+
+
+# 효율적인 방법?
+## 양끝 폭죽을 제외한 폭죽 개수 입력
+N = int(input()) - 2
+
+## 폭죽 길이들 입력
+firecrackers = list(map(int, input().split(" ")))
+
+## 양끝 저장
+left = firecrackers[0]
+right = firecrackers[-1]
+
+## 왼쪽 끝이 오른쪽 끝보다 길 경우 SWAP
+if (left > right):
+    left, right = right, left
+
+## 오른쪽 끝 - N이 왼쪽보다 길 경우 그거 출력 (더 높은 것의 최소값)
+if right-N > left:
+    print(right-N)
+
+## 왼쪽이 더 길다면 (더 비교해야한다면)
+else:
+    # N에서 양 높이의 차이만큼 뺌 -> left에서만 빠지는 횟수
+    tmp = N - (right-left)
+    # 왼쪽에서 나머지와 몫만큼 뺀 값을 출력 -> 균등분배와 최소값을 위함
+    print(left-tmp//2-tmp%2)
