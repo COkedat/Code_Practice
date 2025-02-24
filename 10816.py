@@ -34,9 +34,9 @@ for i in N:
     except:
         answer_dict[i]=1
 
-for i in M:
+for j in M:
     try:
-        print(answer_dict[i], end = " ")
+        print(answer_dict[j], end = " ")
     except:
         print(0, end = " ")
 
