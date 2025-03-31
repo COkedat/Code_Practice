@@ -15,13 +15,13 @@ input = stdin.readline
 A, B, V = map(int,input().strip().split(" "))
 # 상당히 야매스러운 방법
 # 미리 크기 가늠하고 전처리하기
-if(V > A+B):
+if( V-A > A ):
     day = (V - A) // (A - B)
     pos = (A - B) * day 
 else:
     day = 0
     pos = 0
-# 반복문
+# 그 후 대충 반복문
 while(pos < V):
     day += 1
     pos += A
