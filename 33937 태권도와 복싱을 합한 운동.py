@@ -2,30 +2,34 @@ A=input()
 B=input()
 answer=""
 moum = ["a", "e", "i", "o", "u"]
-
-A_met = False
+cnt = 0
+A_met = -1
 for i in range(len(A)):
     if(A[i] in moum):
-        A_met = True
+        if i == len(A)-1:
+            A_met = -1
+            break
+        A_met = i+1
         answer+=A[i]
     if(A[i] not in moum):
-        if A_met:
+        if A_met!=-1:
             break
-        else:
-            answer+=A[i]  
 
-B_met = False   
+B_met = -1 
 for i in range(len(B)):
     if(B[i] in moum):
-        B_met = True
+        if i == len(B)-1:
+            A_met = -1
+            break
+        B_met = i+1
         answer+=B[i]
     if(B[i] not in moum):
-        if B_met:
+        if B_met!=-1:
             break
-        else:
-            answer+=B[i]  
-            
-if (A_met and B_met):
+
+
+answer=A[:A_met]+B[:B_met]
+if (A_met!=-1 and B_met!=-1):
     print(answer)
 else:
     print("no such exercise")
